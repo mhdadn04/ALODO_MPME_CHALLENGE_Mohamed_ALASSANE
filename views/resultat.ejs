@@ -66,52 +66,75 @@
   </div>
 </div>
 
-<!-- Points Forts & Axes d'Amélioration -->
-<div class="grid-2-cols section-block">
-  
-  <!-- Points Forts -->
-  <div class="card card-success">
-    <h2 class="section-subheading text-success">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 6px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-      Points Forts Identifiés (<%= report.pointsForts.length %>)
-    </h2>
-    <% if (report.pointsForts.length === 0) { %>
-      <p class="empty-state">Aucun point fort majeur identifié sur ces dimensions.</p>
-    <% } else { %>
-      <ul class="insights-list">
-        <% report.pointsForts.forEach(item => { %>
-          <li class="insight-item">
-            <span class="insight-dim"><%= item.dimension %></span>
-            <strong><%= item.title %></strong>
-            <p class="insight-detail"><%= item.detail %></p>
-          </li>
-        <% }); %>
-      </ul>
-    <% } %>
-  </div>
+<!-- Section Horizontale Repliable : Points Forts -->
+<div class="section-block">
+  <div class="card card-success expandable-card">
+    <div class="expandable-header" onclick="toggleExpandable('points-forts-content', 'points-forts-icon')">
+      <div class="expandable-title-wrapper">
+        <h2 class="section-subheading text-success mb-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 8px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Points Forts Identifiés (<%= report.pointsForts.length %>)
+        </h2>
+        <span class="expandable-subtitle">Cliquez pour <%= report.pointsForts.length > 0 ? 'afficher / masquer' : 'voir' %> le détail</span>
+      </div>
+      <button type="button" class="btn-icon-toggle" aria-label="Développer">
+        <svg id="points-forts-icon" class="chevron-icon rotate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+    </div>
 
-  <!-- Axes d'Amélioration -->
-  <div class="card card-warning">
-    <h2 class="section-subheading text-warning">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 6px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-      Axes d'Amélioration Prioritaires (<%= report.axesAmelioration.length %>)
-    </h2>
-    <% if (report.axesAmelioration.length === 0) { %>
-      <p class="empty-state">Excellente structuration ! Aucun axe d'amélioration critique.</p>
-    <% } else { %>
-      <ul class="insights-list">
-        <% report.axesAmelioration.forEach(item => { %>
-          <li class="insight-item">
-            <span class="insight-dim"><%= item.dimension %></span>
-            <strong><%= item.title %></strong>
-            <p class="insight-detail">Statut actuel : <%= item.detail %></p>
-            <p class="insight-rec">💡 <em><%= item.recommendation %></em></p>
-          </li>
-        <% }); %>
-      </ul>
-    <% } %>
+    <div id="points-forts-content" class="expandable-content open">
+      <% if (report.pointsForts.length === 0) { %>
+        <p class="empty-state">Aucun point fort majeur identifié sur ces dimensions.</p>
+      <% } else { %>
+        <div class="horizontal-insights-grid">
+          <% report.pointsForts.forEach(item => { %>
+            <div class="insight-card-horizontal insight-success">
+              <span class="insight-dim"><%= item.dimension %></span>
+              <h3 class="insight-item-title"><%= item.title %></h3>
+              <p class="insight-detail"><%= item.detail %></p>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
   </div>
+</div>
 
+<!-- Section Horizontale Repliable : Axes d'Amélioration -->
+<div class="section-block">
+  <div class="card card-warning expandable-card">
+    <div class="expandable-header" onclick="toggleExpandable('axes-amelioration-content', 'axes-amelioration-icon')">
+      <div class="expandable-title-wrapper">
+        <h2 class="section-subheading text-warning mb-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          Axes d'Amélioration Prioritaires (<%= report.axesAmelioration.length %>)
+        </h2>
+        <span class="expandable-subtitle">Cliquez pour <%= report.axesAmelioration.length > 0 ? 'afficher / masquer' : 'voir' %> les recommandations</span>
+      </div>
+      <button type="button" class="btn-icon-toggle" aria-label="Développer">
+        <svg id="axes-amelioration-icon" class="chevron-icon rotate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+    </div>
+
+    <div id="axes-amelioration-content" class="expandable-content open">
+      <% if (report.axesAmelioration.length === 0) { %>
+        <p class="empty-state">Excellente structuration ! Aucun axe d'amélioration critique.</p>
+      <% } else { %>
+        <div class="horizontal-insights-grid">
+          <% report.axesAmelioration.forEach(item => { %>
+            <div class="insight-card-horizontal insight-warning">
+              <span class="insight-dim"><%= item.dimension %></span>
+              <h3 class="insight-item-title"><%= item.title %></h3>
+              <p class="insight-detail"><strong>Statut :</strong> <%= item.detail %></p>
+              <div class="insight-rec-box">
+                💡 <em><%= item.recommendation %></em>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </div>
 </div>
 
 <!-- Actions de fin -->
@@ -121,5 +144,21 @@
     Recommencer le diagnostic
   </a>
 </div>
+
+<!-- Script d'interaction Replier / Développer (Chevron ^ / v) -->
+<script>
+  function toggleExpandable(contentId, iconId) {
+    const content = document.getElementById(contentId);
+    const icon = document.getElementById(iconId);
+    
+    if (content.classList.contains('open')) {
+      content.classList.remove('open');
+      icon.classList.remove('rotate-icon');
+    } else {
+      content.classList.add('open');
+      icon.classList.add('rotate-icon');
+    }
+  }
+</script>
 
 <%- include('partials/footer') %>
