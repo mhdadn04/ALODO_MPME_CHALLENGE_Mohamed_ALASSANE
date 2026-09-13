@@ -1,76 +1,82 @@
-# ALODO MPME — Prototype de Diagnostic de Maturité
+# ALODO MPME — Diagnostic de Maturité des Entreprises
 
-> **Challenge de Sélection ALODO TECH — Profil Développeur**  
-> Prototype fonctionnel d'évaluation de la structuration des Micro, Petites et Moyennes Entreprises (MPME) au Bénin et en Afrique de l'Ouest.
-
----
-
-## 1. Présentation du Projet
-Ce projet est un prototype web fonctionnel développé pour l'exercice de sélection **ALODO TECH**. Il simule le parcours de diagnostic initial du programme **ALODO MPME**, conçu pour mesurer la maturité réelle d'une entreprise et identifier ses freins de structuration avant tout accompagnement ou accès aux services financiers.
-
-Le prototype s'articule autour d'un parcours fluide en **3 écrans principaux** :
-1. **Écran d'Introduction** : Présentation du cadre d'évaluation, durée et garantie de confidentialité.
-2. **Questionnaire Pas-à-Pas (12 questions)** : Formulaire dynamique couvrant 3 dimensions prioritaires avec indicateur de progression en temps réel.
-3. **Rapport de Diagnostic Instantané** : Score global ALODO (/100), scores par dimension, détection des **Règles d'Or (Lignes rouges de structuration)**, points forts et axes d'amélioration.
+Prototype web fonctionnel du système de diagnostic initial du programme **ALODO MPME**, conçu pour évaluer la structuration et la maturité des Micro, Petites et Moyennes Entreprises (MPME) au Bénin et en Afrique de l'Ouest.
 
 ---
 
-## 2. Choix Produit & Ancrage Terrain (Bénin / UEMOA)
+## 1. Présentation
 
-### Pourquoi ces 3 Dimensions ?
-- **Formalisation & Conformité** : Le statut légal (RCCM via l'APIEX, IFU) et la séparation des comptes pro/perso sont les prérequis juridiques indispensables à toute relation bancaire au Bénin.
-- **Comptabilité & Gestion Financière** : La transition du "cahier de caisse" manuscrit vers des états financiers normés (SYSCOHADA) conditionne l'évaluation des marges et la prévision de trésorerie.
-- **Digitalisation & Canaux Commerciaux** : L'utilisation de WhatsApp Business (catalogues, statuts), l'outillage mobile et l'adoption du **Mobile Money Marchand** (FedaPay, KKiaPay, MoMo Marchand) créent un historique financier certifiable.
+Ce projet est un prototype d'application web permettant d'évaluer la maturité réelle d'une MPME avant son orientation vers des programmes de structuration ou de financement.
 
-### Matrice du Moteur de Scoring Hybride en 3 Couches :
+L'application propose un parcours utilisateur fluide structuré en **3 écrans principaux** :
+1. **Écran d'Introduction** : Présentation des objectifs de l'évaluation, durée estimée et cadre de confidentialité.
+2. **Questionnaire Pas-à-Pas (12 questions)** : Parcours dynamique couvrant 3 dimensions prioritaires avec indicateur de progression en temps réel.
+3. **Rapport de Diagnostic Instantané** : Génération automatique du score global ALODO (/100), décomposition par dimension, détection des **Règles d'Or (Lignes rouges de structuration)**, points forts et axes d'amélioration.
+
+---
+
+## 2. Choix produit
+
+### Périmètre des Dimensions Retenues
+Afin d'offrir une évaluation pertinente en un temps de parcours réduit, le périmètre s'est focalisé sur **3 dimensions fondamentales** (parmi les 8 du modèle global) :
+- **Formalisation & Conformité** : Évalue l'existence juridique (RCCM via l'APIEX, IFU) et la séparation des patrimoines personnel et professionnel, prérequis obligatoires pour toute démarche bancaire.
+- **Comptabilité & Gestion Financière** : Évalue la transition du suivi manuscrit (cahier de caisse) vers des registres formalisés et la capacité d'anticipation de la trésorerie.
+- **Digitalisation & Canaux Commerciaux** : Évalue l'utilisation des canaux digitaux adaptés au marché local (WhatsApp Business) et l'adoption du **Mobile Money Marchand** (FedaPay, KKiaPay, MoMo Marchand) pour la traçabilité des flux.
+
+### Moteur de Scoring Hybride
+La logique de calcul repose sur un système à **3 niveaux** :
 1. **Échelle de Maturité (0 / 1 / 2)** :
-   - `0` = Néant / Informel (ex: Suivi de caisse "de tête", Cash uniquement).
-   - `1` = Intermédiaire / Artisanal (ex: Cahier de caisse physique, MoMo sur numéro perso).
-   - `2` = Structuré / Certifié (ex: Logiciel comptable/expert, MoMo Marchand / Compte pro).
+   - `0` = Informel / Néant (ex: Suivi de caisse de tête, Cash uniquement).
+   - `1` = Intermédiaire / Artisanal (ex: Cahier de caisse physique, MoMo personnel).
+   - `2` = Structuré / Certifié (ex: Logiciel comptable ou expert, MoMo Marchand / Compte pro).
 2. **Pondération par Poids Métier** :
-   - Questions *Vitales* (3 pts max) : Facteurs bloquants pour le financement (Compte pro, Registre de caisse, WhatsApp Business).
-   - Questions *Importantes* (2 pts max) : Indicateurs de gestion régulière (TPS/impôts, états financiers, outillage).
-   - Questions *Secondaires* (1 pt max) : Signaux de maturité avancée (IFU rattaché, archivage numérisé, régularité des publications).
+   - *Vitales* (3 pts max) : Éléments bloquants pour le financement (Séparation des comptes, Registre de caisse, WhatsApp Business).
+   - *Importantes* (2 pts max) : Indicateurs de gestion régulière (Régularité fiscale TPS, états financiers, outillage).
+   - *Secondaires* (1 pt max) : Signaux de maturité avancée (IFU rattaché, archivage numérisé, régularité des publications).
 3. **Règles d'Or (Alertes Prioritaires)** :
-   - Détection d'anomalies critiques indépendantes du score global (ex: *Société immatriculée au RCCM mais sans aucun suivi comptable*, *Confusion totale des patrimoines personnel et professionnel*).
+   - Algorithme de détection d'anomalies critiques indépendant du score global (ex: *Société enregistrée au RCCM mais sans aucun suivi comptable*, *Confusion totale des finances personnelles et professionnelles*).
 
----
+### Grille de Justification des Questions
 
-## 3. Justification des Questions pour l'Entretien
-
-| # | Question & Contexte Béninois | Justification Métier pour ALODO TECH |
+| # | Question & Contexte Terrain | Rationale Produit |
 |---|---|---|
-| **F1** | Statut juridique (APIEX / RCCM) | Au Bénin, 80%+ des MPME démarrent informellement. L'immatriculation au RCCM est la 1ère marche de la structuration. |
-| **F2** | Séparation des comptes pro/perso | L'erreur #1 des dirigeants est de confondre la poche familiale et la caisse du commerce. Sans séparation, une banque rejette d'office. |
-| **F3** | Identifiant Fiscal Unique (IFU) | L'IFU est exigé au Bénin pour ouvrir un compte pro et facturer formellement. |
-| **F4** | Régularité fiscale (TPS) | La Taxe Professionnelle Synthétique (TPS) est l'impôt de référence des MPME. Être à jour garantit l'attestation de régularité fiscale. |
-| **C1** | Outil de suivi des caisses | Le "cahier de caisse" est l'outil #1 du terrain. Le diagnostic mesure la transition vers des registres ou logiciels écrits. |
-| **C2** | États financiers (SYSCOHADA) | Les banques exigent un compte de résultat/bilan certifié pour accorder un crédit. |
+| **F1** | Statut juridique (APIEX / RCCM) | 80%+ des MPME démarrent informellement. L'immatriculation au RCCM est la 1ère marche de la structuration. |
+| **F2** | Séparation des comptes pro/perso | La confusion de la poche familiale et de la caisse du commerce empêche toute analyse de solvabilité bancaire. |
+| **F3** | Identifiant Fiscal Unique (IFU) | L'IFU est exigé au Bénin pour l'ouverture de compte pro et la facturation d'entreprise. |
+| **F4** | Régularité fiscale (TPS) | La Taxe Professionnelle Synthétique (TPS) est l'impôt de référence des MPME. Être à jour conditionne l'attestation fiscale. |
+| **C1** | Outil de suivi des caisses | Le "cahier de caisse" est l'outil #1 du terrain. Le diagnostic mesure la transition vers des registres écrits ou logiciels. |
+| **C2** | États financiers (SYSCOHADA) | Les établissements financiers exigent des états financiers normés pour accorder du crédit. |
 | **C3** | Archivage des justificatifs | L'absence d'archivage fragilise la preuve du chiffre d'affaires en cas d'audit. |
-| **C4** | Anticipation de trésorerie (BFR) | La cessation de paiement par manque de liquidité est la cause #1 de faillite des petites entreprises. |
-| **D1** | Canaux clients (WhatsApp Business) | En Afrique de l'Ouest, WhatsApp Business est le véritable "site web" et catalogue des MPME. |
-| **D2** | Outillage numérique des opérations | Mesure la numérisation des tâches quotidiennes (caisse POS mobile vs registre papier). |
-| **D3** | Paiements (MoMo Marchand / FedaPay) | MoMo perso ne crée pas d'historique bancaire certifiable. Seul le MoMo Marchand/TPE crée une preuve de flux pour les prêteurs. |
-| **D4** | Animation régulière des canaux | Mesure la capacité de l'entreprise à maintenir un flux de ventes prévisible. |
+| **C4** | Anticipation de trésorerie (BFR) | La cessation de paiement par manque de liquidités est la 1ère cause de faillite des petites entreprises. |
+| **D1** | Canaux clients (WhatsApp Business) | En Afrique de l'Ouest, WhatsApp Business constitue le véritable catalogue et point de contact digital des MPME. |
+| **D2** | Outillage numérique opérationnel | Mesure le niveau de numérisation des tâches quotidiennes (caisse POS mobile vs registre papier). |
+| **D3** | Paiements (MoMo Marchand / FedaPay) | Le MoMo personnel ne crée pas d'historique bancaire certifiable. Seul le MoMo Marchand/TPE crée une preuve de flux d'affaires. |
+| **D4** | Animation régulière des canaux | Mesure la capacité de la MPME à maintenir un flux d'acquisition et de ventes prévisible. |
 
 ---
 
-## 4. Choix Techniques
-- **Environnement** : Node.js (v18+)
-- **Framework Web** : Express.js (Architecture légère, robuste et maintenable)
-- **Moteur de Rendu** : EJS (Server-Side Rendering propre et modulaire)
-- **Gestion d'État** : `express-session` (Conservation des réponses en session sans complexité de base de données externe)
-- **Design System** : CSS3 Vanilla (Interface B2B SaaS Institutionnelle, inspirée de Stripe, FedaPay & Notion, icons SVG vectorielles, 100% Mobile First)
+## 3. Choix techniques
+
+- **Environnement d'Exécution** : Node.js (v18+)
+- **Framework Serveur** : Express.js (Architecture légère, robuste et facilement maintenable)
+- **Moteur de Rendu** : EJS (Server-Side Rendering propre avec composants partagés)
+- **Gestion de Session** : `express-session` (Stockage temporaire de l'état des réponses pendant le parcours sans dépendance de base de données externe)
+- **Design System & UI** : CSS3 Vanilla (Interface B2B SaaS institutionnelle inspirée des standards de Stripe et Notion, icônes vectorielles SVG, layout 100% responsive et cartes horizontales repliables par accordéon)
 
 ---
 
-## 5. Installation et Lancement Local
+## 4. Installation
 
+### Prérequis
+- Node.js (v14.0 ou supérieur)
+- Git
+
+### Procédure de déploiement local
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/[VOTRE-COMPTE]/ALODO-MPME-CHALLENGE-Mohamed-ALASSANE.git
+git clone https://github.com/[ORGANISATION]/ALODO-MPME-CHALLENGE-Mohamed-ALASSANE.git
 
-# 2. Accéder au dossier
+# 2. Accéder au répertoire du projet
 cd ALODO-MPME-CHALLENGE-Mohamed-ALASSANE
 
 # 3. Installer les dépendances
@@ -80,23 +86,32 @@ npm install
 node server.js
 ```
 
-L'application s'exécute sur **`http://localhost:3000`**.
+L'application est immédiatement accessible sur **`http://localhost:3000`**.
 
 ---
 
-## 6. Limites Volontaires du Scope
-Conformément aux consignes d'ALODO TECH (prototype ciblé sous 3 jours) :
-- Pas de base de données lourde (PostgreSQL/Prisma) : gestion en mémoire/session HTTP.
-- Pas de système d'authentification utilisateur ni d'ERP/CRM complet.
-- Périmètre restreint aux 3 dimensions d'entrée du diagnostic.
+## 5. Fonctionnalités
+
+- **Parcours utilisateur complet en 3 écrans** (Introduction $\rightarrow$ Questionnaire Pas-à-Pas $\rightarrow$ Rapport de Diagnostic).
+- **Gestion d'état en session HTTP** avec persistance des choix et navigation bidirectionnelle (*Précédent / Suivant*).
+- **Indicateur de progression dynamique** indiquant la question courante, la dimension concernée et le pourcentage d'avancement.
+- **Moteur de calcul automatisé** générant le score global (/100) et la répartition par dimension.
+- **Détection des Règles d'Or** isolant automatiquement les risques majeurs de gestion.
+- **Formatage d'affichage optimisé** avec grilles horizontales et accordéons repliables (bouton chevron `▼` / `▲`) pour une lecture claire du rapport.
+- **Interface responsive** adaptée aux écrans mobiles et de bureau.
 
 ---
 
-## 7. Réflexion Produit (Bonus pour la Soutenance)
-1. **Diagnostic Adaptatif (Dynamic Branching)** : Adapter les questions selon le secteur (Commerce de détail $\rightarrow$ gestion des stocks ; Prestation de service $\rightarrow$ gestion des temps/devis ; Artisanat $\rightarrow$ coûts de production).
-2. **Attestation & Indexation ALODO** : Délivrer un badge de maturité certifié ALODO MPME intégrable sur WhatsApp Business ou les factures des entreprises lauréates.
-3. **Connecteurs API Financial Ledger** : Permettre l'import automatique des historiques MTN MoMo Marchand / FedaPay pour certifier le Chiffre d'Affaires sans saisie manuelle.
+## 6. Limites
+
+- **Persistance des données** : Stockage temporaire en session mémoire (non conservé en base de données persistante PostgreSQL/MongoDB).
+- **Périmètre fonctionnel** : Absence d'espace d'authentification utilisateur et de tableau de bord d'administration multi-entreprises.
+- **Couverture du diagnostic** : Restreint à 3 dimensions prioritaires sur les 8 du référentiel complet.
 
 ---
-**Développé par Mohamed ALASSANE**  
-Candidat Développeur — ALODO TECH 2026
+
+## 7. Améliorations
+
+1. **Branchement Dynamique (Diagnostic Adaptatif)** : Personnalisation automatique des questions selon le secteur d'activité (Commerce de détail $\rightarrow$ gestion des stocks ; Prestations de service $\rightarrow$ gestion des temps/devis ; Artisanat $\rightarrow$ coûts de production).
+2. **Attestation Certifiée ALODO** : Génération d'un rapport PDF certifié téléchargeable intégrant un QR code de vérification pour les banques partenaires.
+3. **Synchronisation API de Trésorerie** : Connexion directe aux agrégateurs de paiement (FedaPay, KKiaPay, APIs Mobile Money) pour certifier automatiquement le Chiffre d'Affaires réel sans saisie déclarative.
