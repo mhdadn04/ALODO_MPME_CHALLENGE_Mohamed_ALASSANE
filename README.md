@@ -112,6 +112,8 @@ L'application est immédiatement accessible sur **`http://localhost:3000`**.
 
 ## 7. Améliorations
 
-1. **Branchement Dynamique (Diagnostic Adaptatif)** : Personnalisation automatique des questions selon le secteur d'activité (Commerce de détail $\rightarrow$ gestion des stocks ; Prestations de service $\rightarrow$ gestion des temps/devis ; Artisanat $\rightarrow$ coûts de production).
-2. **Attestation Certifiée ALODO** : Génération d'un rapport PDF certifié téléchargeable intégrant un QR code de vérification pour les banques partenaires.
-3. **Synchronisation API de Trésorerie** : Connexion directe aux agrégateurs de paiement (FedaPay, KKiaPay, APIs Mobile Money) pour certifier automatiquement le Chiffre d'Affaires réel sans saisie déclarative.
+Avec plus de temps de développement, les améliorations suivantes feraient évoluer l'application :
+
+1. **Persistance en base de données** : Intégration de PostgreSQL et d'un ORM (Prisma) pour sauvegarder les diagnostics et suivre l'évolution de la maturité des MPME au fil du temps.
+2. **Export du Rapport au format PDF** : Génération automatique d'un document PDF imprimable récapitulant les résultats et recommandations.
+3. **Adaptation dynamique du questionnaire** : Ajustement automatique de certaines questions selon le secteur d'activité de l'entreprise (Commerce, Service, Artisanat).
