@@ -110,10 +110,17 @@ L'application est immédiatement accessible sur **`http://localhost:3000`**.
 
 ---
 
-## 7. Améliorations
+## 7. Améliorations & Réflexion Produit (Bonus)
 
-Avec plus de temps de développement, les améliorations suivantes feraient évoluer l'application :
+Au-delà du prototype technique développé, deux axes d'amélioration produit ont été identifiés pour renforcer la pertinence globale d'ALODO MPME :
 
-1. **Persistance en base de données** : Intégration de PostgreSQL et d'un ORM (Prisma) pour sauvegarder les diagnostics et suivre l'évolution de la maturité des MPME au fil du temps.
-2. **Export du Rapport au format PDF** : Génération automatique d'un document PDF imprimable récapitulant les résultats et recommandations.
-3. **Adaptation dynamique du questionnaire** : Ajustement automatique de certaines questions selon le secteur d'activité de l'entreprise (Commerce, Service, Artisanat).
+### 1. Diagnostic Adaptatif par Arbre de Branchement (*Dynamic Branching*)
+Plutôt que de soumettre un questionnaire identique à toutes les entreprises, une première question de qualification (Secteur d'activité + Taille de l'équipe) permet d'adapter dynamiquement le parcours :
+- **Secteur Commerce / Négoce** : Orientation vers les questions de rotation des stocks, gestion des fournisseurs et délais de paiement.
+- **Secteur Prestation de Service** : Orientation vers les processus de devis, facturation et suivi du temps.
+- **Secteur Production / Artisanat** : Orientation vers le suivi des coûts de revient des matières premières.
+
+### 2. Feuille de Route d'Action Post-Diagnostic (*Actionable Action Plan*)
+Un diagnostic ne doit pas seulement délivrer un score, il doit orienter l'entrepreneur. En s'appuyant sur les faiblesses détectées, le système peut générer automatiquement une feuille de route en 3 étapes concrètes :
+- *Exemple (Absence d'IFU)* $\rightarrow$ Redirection vers le guide pas-à-pas de régularisation sur le portail officiel de l'APIEX Bénin.
+- *Exemple (Gestion de caisse informelle)* $\rightarrow$ Recommandation d'un modèle de registres de caisse ou d'outils partenaires simplifiés.
