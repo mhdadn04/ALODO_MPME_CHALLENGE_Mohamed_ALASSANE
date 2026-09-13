@@ -1,0 +1,112 @@
+<%- include('partials/header') %>
+
+<!-- Header du Rapport -->
+<div class="card result-header-card">
+  <div class="result-top">
+    <div class="score-circle-container">
+      <div class="score-circle score-level-<%= report.globalScore >= 70 ? 'high' : (report.globalScore >= 40 ? 'med' : 'low') %>">
+        <span class="score-value"><%= report.globalScore %></span>
+        <span class="score-max">/100</span>
+      </div>
+      <span class="score-label">Score ALODO MPME</span>
+    </div>
+
+    <div class="result-summary">
+      <span class="badge-profile"><%= report.profileTitle %></span>
+      <h1 class="report-title">Synthèse de Maturité</h1>
+      <p class="global-rec"><%= report.globalRecommendation %></p>
+    </div>
+  </div>
+</div>
+
+<!-- Alertes Prioritaires (Règles d'Or) si présentes -->
+<% if (report.goldenAlerts && report.goldenAlerts.length > 0) { %>
+  <div class="section-block">
+    <h2 class="section-heading text-danger">⚠️ Alertes Prioritaires (Lignes Rouges)</h2>
+    <div class="alerts-grid">
+      <% report.goldenAlerts.forEach(alert => { %>
+        <div class="alert-card alert-<%= alert.level.toLowerCase() %>">
+          <div class="alert-header">
+            <span class="alert-level"><%= alert.level %></span>
+            <h3 class="alert-title"><%= alert.title %></h3>
+          </div>
+          <p class="alert-message"><%= alert.message %></p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+<% } %>
+
+<!-- Scores par dimension -->
+<div class="section-block">
+  <h2 class="section-heading">📊 Détail des Scores par Dimension</h2>
+  <div class="dimensions-grid">
+    <% Object.keys(report.dimensions).forEach(dimKey => { 
+        const dim = report.dimensions[dimKey];
+    %>
+      <div class="dimension-card">
+        <div class="dim-header">
+          <span class="dim-title"><%= dim.label %></span>
+          <span class="dim-score"><%= dim.score %>%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width: <%= dim.score %>%;"></div>
+        </div>
+        <div class="dim-footer">
+          <span>Points obtenus : <%= dim.obtained %> / <%= dim.max %> pts</span>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</div>
+
+<!-- Points Forts & Axes d'Amélioration -->
+<div class="grid-2-cols section-block">
+  
+  <!-- Points Forts -->
+  <div class="card card-success">
+    <h2 class="section-subheading text-success">✅ Points Forts Identifiés (<%= report.pointsForts.length %>)</h2>
+    <% if (report.pointsForts.length === 0) { %>
+      <p class="empty-state">Aucun point fort majeur identifié sur ces dimensions.</p>
+    <% } else { %>
+      <ul class="insights-list">
+        <% report.pointsForts.forEach(item => { %>
+          <li class="insight-item">
+            <span class="insight-dim"><%= item.dimension %></span>
+            <strong><%= item.title %></strong>
+            <p class="insight-detail"><%= item.detail %></p>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </div>
+
+  <!-- Axes d'Amélioration -->
+  <div class="card card-warning">
+    <h2 class="section-subheading text-warning">🎯 Axes d'Amélioration Prioritaires (<%= report.axesAmelioration.length %>)</h2>
+    <% if (report.axesAmelioration.length === 0) { %>
+      <p class="empty-state">Excellente structuration ! Aucun axe d'amélioration critique.</p>
+    <% } else { %>
+      <ul class="insights-list">
+        <% report.axesAmelioration.forEach(item => { %>
+          <li class="insight-item">
+            <span class="insight-dim"><%= item.dimension %></span>
+            <strong><%= item.title %></strong>
+            <p class="insight-detail">Statut : <%= item.detail %></p>
+            <p class="insight-rec">💡 <em><%= item.recommendation %></em></p>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </div>
+
+</div>
+
+<!-- Actions de fin -->
+<div class="action-bar align-center section-block">
+  <a href="/diagnostic/reset" class="btn btn-secondary">
+    🔄 Recommencer le diagnostic
+  </a>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+
+<!-- Barre de progression -->
+<div class="progress-wrapper">
+  <div class="progress-header">
+    <span class="progress-step">Question <%= currentIndex + 1 %> sur <%= totalQuestions %></span>
+    <span class="progress-dimension"><%= question.dimensionLabel %></span>
+    <span class="progress-percentage"><%= progressPercent %>%</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" style="width: <%= progressPercent %>%;"></div>
+  </div>
+</div>
+
+<!-- Carte de la question -->
+<div class="card question-card">
+  <div class="question-meta">
+    <span class="tag tag-<%= question.weight %>">Poids : <%= question.weight.toUpperCase() %></span>
+    <span class="tag tag-dim"><%= question.dimensionLabel %></span>
+  </div>
+
+  <h2 class="question-title"><%= question.question %></h2>
+  
+  <% if (question.description) { %>
+    <p class="question-description"><%= question.description %></p>
+  <% } %>
+
+  <form action="/diagnostic/answer" method="POST" id="questionForm">
+    <input type="hidden" name="questionId" value="<%= question.id %>">
+    <input type="hidden" name="currentIndex" value="<%= currentIndex %>">
+
+    <div class="options-list">
+      <% question.options.forEach((option, idx) => { %>
+        <label class="option-card <%= savedAnswer === option.id ? 'selected' : '' %>">
+          <input 
+            type="radio" 
+            name="optionId" 
+            value="<%= option.id %>" 
+            <%= savedAnswer === option.id ? 'checked' : '' %>
+            required
+            onchange="document.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected')); this.closest('.option-card').classList.add('selected');"
+          >
+          <div class="option-indicator"></div>
+          <div class="option-content">
+            <span class="option-text"><%= option.label %></span>
+          </div>
+        </label>
+      <% }); %>
+    </div>
+
+    <div class="action-bar space-between">
+      <% if (!isFirst) { %>
+        <button type="submit" name="action" value="prev" class="btn btn-secondary" formnovalidate>
+          ← Précédent
+        </button>
+      <% } else { %>
+        <div></div>
+      <% } %>
+
+      <button type="submit" name="action" value="next" class="btn btn-primary">
+        <% if (isLast) { %>
+          Voir mon rapport final 📊
+        <% } else { %>
+          Question suivante →
+        <% } %>
+      </button>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

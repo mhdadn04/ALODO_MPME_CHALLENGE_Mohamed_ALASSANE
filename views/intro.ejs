@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+
+<div class="card intro-card">
+  <div class="intro-badge">Diagnostic réservé aux MPME</div>
+  <h1 class="page-title">Mesurez la maturité réelle de votre entreprise</h1>
+  
+  <p class="lead-text">
+    Évaluez la structuration de votre entreprise sur 3 dimensions essentielles pour accéder aux opportunités d'accompagnement et de financement du programme <strong>ALODO MPME</strong>.
+  </p>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">📋</div>
+      <div class="feature-text">
+        <h3><%= totalQuestions %> Questions ciblées</h3>
+        <p>Un questionnaire rapide couvrant la Formalisation, la Comptabilité et la Digitalisation.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">⏱️</div>
+      <div class="feature-text">
+        <h3><%= estimatedMinutes %> Minutes estimées</h3>
+        <p>Parcours fluide en pas-à-pas avec sauvegarde automatique de votre progression.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">📊</div>
+      <div class="feature-text">
+        <h3>Rapport instantané</h3>
+        <p>Obtenez votre score ALODO (0-100), vos points forts et la détection d'alertes prioritaires.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="privacy-notice">
+    🔒 <strong>Confidentialité garantie :</strong> Vos réponses servent uniquement à générer votre rapport de maturité et ne seront jamais partagées à des tiers.
+  </div>
+
+  <div class="action-bar align-center">
+    <a href="/diagnostic/question/0" class="btn btn-primary btn-lg">
+      Commencer le diagnostic →
+    </a>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
