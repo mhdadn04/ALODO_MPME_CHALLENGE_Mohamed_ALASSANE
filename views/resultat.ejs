@@ -22,7 +22,10 @@
 <!-- Alertes Prioritaires (Règles d'Or) si présentes -->
 <% if (report.goldenAlerts && report.goldenAlerts.length > 0) { %>
   <div class="section-block">
-    <h2 class="section-heading text-danger">⚠️ Alertes Prioritaires (Lignes Rouges)</h2>
+    <h2 class="section-heading text-danger">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 8px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      Alertes Prioritaires (Lignes Rouges de Structuration)
+    </h2>
     <div class="alerts-grid">
       <% report.goldenAlerts.forEach(alert => { %>
         <div class="alert-card alert-<%= alert.level.toLowerCase() %>">
@@ -39,7 +42,10 @@
 
 <!-- Scores par dimension -->
 <div class="section-block">
-  <h2 class="section-heading">📊 Détail des Scores par Dimension</h2>
+  <h2 class="section-heading">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 8px;"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+    Détail des Scores par Dimension
+  </h2>
   <div class="dimensions-grid">
     <% Object.keys(report.dimensions).forEach(dimKey => { 
         const dim = report.dimensions[dimKey];
@@ -65,7 +71,10 @@
   
   <!-- Points Forts -->
   <div class="card card-success">
-    <h2 class="section-subheading text-success">✅ Points Forts Identifiés (<%= report.pointsForts.length %>)</h2>
+    <h2 class="section-subheading text-success">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 6px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      Points Forts Identifiés (<%= report.pointsForts.length %>)
+    </h2>
     <% if (report.pointsForts.length === 0) { %>
       <p class="empty-state">Aucun point fort majeur identifié sur ces dimensions.</p>
     <% } else { %>
@@ -83,7 +92,10 @@
 
   <!-- Axes d'Amélioration -->
   <div class="card card-warning">
-    <h2 class="section-subheading text-warning">🎯 Axes d'Amélioration Prioritaires (<%= report.axesAmelioration.length %>)</h2>
+    <h2 class="section-subheading text-warning">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 6px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      Axes d'Amélioration Prioritaires (<%= report.axesAmelioration.length %>)
+    </h2>
     <% if (report.axesAmelioration.length === 0) { %>
       <p class="empty-state">Excellente structuration ! Aucun axe d'amélioration critique.</p>
     <% } else { %>
@@ -92,7 +104,7 @@
           <li class="insight-item">
             <span class="insight-dim"><%= item.dimension %></span>
             <strong><%= item.title %></strong>
-            <p class="insight-detail">Statut : <%= item.detail %></p>
+            <p class="insight-detail">Statut actuel : <%= item.detail %></p>
             <p class="insight-rec">💡 <em><%= item.recommendation %></em></p>
           </li>
         <% }); %>
@@ -105,7 +117,8 @@
 <!-- Actions de fin -->
 <div class="action-bar align-center section-block">
   <a href="/diagnostic/reset" class="btn btn-secondary">
-    🔄 Recommencer le diagnostic
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+    Recommencer le diagnostic
   </a>
 </div>
 
